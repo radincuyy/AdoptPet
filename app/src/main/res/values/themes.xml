@@ -3,15 +3,10 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/splash_background</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
+        <item
+            name="android:windowLightNavigationBar"
+            tools:targetApi="27">true</item>
     </style>
 
     <style name="Theme.AdoptPet" parent="Base.Theme.AdoptPet" />
-
-    <style name="Theme.AdoptPet.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/splash_background</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_placeholder_badge</item>
-        <item name="windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
-        <item name="postSplashScreenTheme">@style/Theme.AdoptPet</item>
-    </style>
 </resources>

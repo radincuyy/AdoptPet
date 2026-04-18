@@ -8,31 +8,37 @@
 
     <TextView
         android:id="@+id/tv_category_all"
-        style="@style/Chip.Text"
-        android:layout_width="112dp"
+        android:layout_width="88dp"
         android:layout_height="42dp"
         android:background="@drawable/bg_chip_active"
+        android:gravity="center"
         android:text="@string/home_category_all"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_category_cat"
-        style="@style/Chip.Text"
-        android:layout_width="118dp"
+        android:layout_width="84dp"
         android:layout_height="42dp"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="12dp"
         android:background="@drawable/bg_chip_inactive"
+        android:gravity="center"
         android:text="@string/home_category_cat"
-        android:textColor="@color/home_primary" />
+        android:textColor="@color/home_primary"
+        android:textSize="13sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_category_dog"
-        style="@style/Chip.Text"
-        android:layout_width="118dp"
+        android:layout_width="84dp"
         android:layout_height="42dp"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="12dp"
         android:background="@drawable/bg_chip_inactive"
+        android:gravity="center"
         android:text="@string/home_category_dog"
-        android:textColor="@color/home_primary" />
+        android:textColor="@color/home_primary"
+        android:textSize="13sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

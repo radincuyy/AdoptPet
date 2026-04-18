@@ -2,6 +2,7 @@
 <resources>
     <style name="Text" parent="@android:style/Widget" />
     <style name="Chip" parent="@android:style/Widget" />
+    <style name="Card" parent="@android:style/Widget" />
 
     <style name="Text.Title">
         <item name="android:textSize">@dimen/text_title</item>
@@ -34,5 +35,11 @@
         <item name="android:textSize">@dimen/text_body</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Card.Clean">
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="cardCornerRadius">@dimen/radius_lg</item>
     </style>
 </resources>
