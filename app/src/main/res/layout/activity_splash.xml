@@ -20,19 +20,9 @@
         app:layout_constraintVertical_bias="0.43">
 
         <FrameLayout
-            android:layout_width="92dp"
+            android:layout_width="167dp"
             android:layout_height="92dp"
-            android:background="@drawable/bg_placeholder_badge">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:contentDescription="@string/splash_logo_content_desc"
-                android:fontFamily="sans-serif-black"
-                android:text="@string/placeholder_logo_text"
-                android:textColor="@android:color/white"
-                android:textSize="24sp" />
+            android:background="@drawable/logo_badge">
         </FrameLayout>
 
         <TextView

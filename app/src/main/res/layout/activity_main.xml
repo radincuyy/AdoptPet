@@ -1,180 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/home_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/home_background">
+    android:background="@color/home_background"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:id="@+id/top_bar"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="18dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical"
+        android:paddingStart="18dp"
+        android:paddingTop="13dp"
+        android:paddingEnd="18dp"
+        android:paddingBottom="@dimen/space_lg">
 
-        <TextView
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:background="@drawable/bg_placeholder_badge"
-            android:contentDescription="@string/home_logo_content_desc"
-            android:fontFamily="sans-serif-black"
-            android:gravity="center"
-            android:text="@string/placeholder_logo_short"
-            android:textColor="@android:color/white"
-            android:textSize="8sp" />
+        <include
+            android:id="@+id/incHeader"
+            layout="@layout/view_home_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/tv_app_label"
-            android:layout_width="0dp"
+        <include
+            android:id="@+id/incSearch"
+            layout="@layout/view_home_search"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="@dimen/space_xl" />
+
+        <include
+            android:id="@+id/incCategories"
+            layout="@layout/view_home_categories"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/app_name"
-            android:textColor="@color/home_primary"
-            android:textSize="20sp" />
+            android:layout_marginTop="24dp" />
 
-        <TextView
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:background="@drawable/bg_placeholder_icon"
-            android:contentDescription="@string/home_menu_content_desc"
-            android:gravity="center"
-            android:text="@string/placeholder_menu_text"
-            android:textColor="@color/home_primary"
-            android:textSize="10sp" />
     </LinearLayout>
 
-    <View
-        android:id="@+id/top_divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/home_divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_bar" />
-
-    <TextView
-        android:id="@+id/tv_heading"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="18dp"
-        android:fontFamily="sans-serif-black"
-        android:lineSpacingExtra="-2dp"
-        android:text="@string/home_heading"
-        android:textColor="@color/home_primary"
-        android:textSize="31sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_divider" />
-
-    <TextView
-        android:id="@+id/tv_subheading"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="18dp"
-        android:fontFamily="sans-serif-medium"
-        android:lineSpacingExtra="4dp"
-        android:text="@string/home_subheading"
-        android:textColor="@color/home_secondary"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_heading" />
-
-    <LinearLayout
-        android:id="@+id/search_bar"
-        android:layout_width="0dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="18dp"
-        android:background="@drawable/bg_search_bar"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingHorizontal="22dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_subheading">
-
-        <TextView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/bg_placeholder_icon"
-            android:contentDescription="@string/home_search_content_desc"
-            android:gravity="center"
-            android:text="@string/placeholder_search_text"
-            android:textColor="@color/home_primary"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/tv_search_hint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/home_search_hint"
-            android:textColor="@color/home_hint"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/category_row"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="18dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_bar">
-
-        <TextView
-            android:layout_width="112dp"
-            android:layout_height="42dp"
-            android:background="@drawable/bg_chip_active"
-            android:fontFamily="sans-serif-black"
-            android:gravity="center"
-            android:text="@string/home_category_all"
-            android:textColor="@android:color/white"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="118dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="14dp"
-            android:background="@drawable/bg_chip_inactive"
-            android:fontFamily="sans-serif-black"
-            android:gravity="center"
-            android:text="@string/home_category_cat"
-            android:textColor="@color/home_primary"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="118dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="14dp"
-            android:background="@drawable/bg_chip_inactive"
-            android:fontFamily="sans-serif-black"
-            android:gravity="center"
-            android:text="@string/home_category_dog"
-            android:textColor="@color/home_primary"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

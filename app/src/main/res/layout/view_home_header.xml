@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="34dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_app_logo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/home_logo_content_desc"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo_badge" />
+
+        <TextView
+            android:id="@+id/tv_app_label"
+            style="@style/Text.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/app_name"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/img_menu"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:contentDescription="@string/home_menu_content_desc"
+            android:padding="1dp"
+            android:src="@drawable/baseline_menu_24"
+            android:tint="@color/home_primary" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/top_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/space_sm"
+        android:background="@color/home_divider" />
+
+    <TextView
+        android:id="@+id/tv_heading"
+        style="@style/Text.H1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_xl"
+        android:lineSpacingExtra="-2dp"
+        android:text="@string/home_heading" />
+
+    <TextView
+        android:id="@+id/tv_subheading"
+        style="@style/Text.BodyMuted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_sm"
+        android:lineSpacingExtra="4dp"
+        android:text="@string/home_subheading" />
+
+</LinearLayout>

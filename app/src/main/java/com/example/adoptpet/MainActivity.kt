@@ -21,9 +21,9 @@ class MainActivity : AppCompatActivity() {
         }
         setContentView(binding.root)
 
-        binding.tvHeading.text = getString(R.string.home_heading)
-        binding.tvSubheading.text = getString(R.string.home_subheading)
-        binding.tvSearchHint.text = getString(R.string.home_search_hint)
+        binding.incHeader.tvHeading.text = getString(R.string.home_heading)
+        binding.incHeader.tvSubheading.text = getString(R.string.home_subheading)
+        binding.incSearch.tvSearchHint.text = getString(R.string.home_search_hint)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.homeRoot) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
