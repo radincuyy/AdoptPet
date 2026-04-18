@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">AdoptPet</string>
+    <string name="splash_app_name">AdopsiPet</string>
+    <string name="splash_tagline">Beri mereka rumah yang hangat</string>
+    <string name="splash_logo_content_desc">Logo AdopsiPet</string>
+    <string name="splash_favorite_content_desc">Menu favorit</string>
+    <string name="splash_home_content_desc">Menu beranda</string>
+    <string name="splash_pet_content_desc">Menu hewan</string>
+    <string name="home_logo_content_desc">Logo AdoptPet</string>
+    <string name="home_menu_content_desc">Menu aplikasi</string>
+    <string name="home_search_content_desc">Ikon pencarian</string>
+    <string name="home_heading">Temukan Sahabat\nSejati</string>
+    <string name="home_subheading">Berikan rumah yang penuh kasih bagi mereka yang menanti kehangatan sebuah keluarga.</string>
+    <string name="home_search_hint">Cari ras atau karakter…</string>
+    <string name="home_category_all">Semua</string>
+    <string name="home_category_cat">Kucing</string>
+    <string name="home_category_dog">Anjing</string>
+    <string name="placeholder_logo_text">AP</string>
+    <string name="placeholder_logo_short">A</string>
+    <string name="placeholder_menu_text">M</string>
+    <string name="placeholder_search_text">S</string>
+</resources>

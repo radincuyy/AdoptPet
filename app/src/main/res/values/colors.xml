@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="home_background">#FFF9F2</color>
+    <color name="home_divider">#F0E1CF</color>
+    <color name="home_hint">#C7A885</color>
+    <color name="home_primary">#7D4A05</color>
+    <color name="home_secondary">#B38D64</color>
+    <color name="splash_background">#FFF7EF</color>
+    <color name="splash_icon_tint">#D8C7AF</color>
+    <color name="splash_primary">#8B5203</color>
+    <color name="splash_secondary">#7B623F</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
