@@ -47,33 +47,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp" />
 
-            <include
-                android:id="@+id/incCardMilo"
-                layout="@layout/view_dashboard_card_milo"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPets"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp" />
-
-            <include
-                android:id="@+id/incCardBella"
-                layout="@layout/view_dashboard_card_bella"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp" />
-
-            <include
-                android:id="@+id/incCardSnow"
-                layout="@layout/view_dashboard_card_snow"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp" />
-
-            <include
-                android:id="@+id/incCardLuna"
-                layout="@layout/view_dashboard_card_luna"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp" />
+                android:layout_marginTop="20dp"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

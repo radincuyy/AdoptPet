@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_milo"
+    android:id="@+id/cardPet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="14dp"
+    android:layout_marginVertical="10dp"
     app:cardBackgroundColor="@color/home_card_surface"
     app:cardCornerRadius="28dp"
     app:cardElevation="0dp">
@@ -19,13 +21,15 @@
             android:background="@drawable/bg_dashboard_image">
 
             <ImageView
+                android:id="@+id/imgPet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/pet_image_content_desc"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@drawable/persiancat" />
 
             <ImageView
+                android:id="@+id/btnFavorite"
                 android:layout_width="34dp"
                 android:layout_height="34dp"
                 android:layout_gravity="top|end"
@@ -52,6 +56,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tvName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -73,51 +78,89 @@
                         android:src="@drawable/baseline_location_on_14" />
 
                     <TextView
+                        android:id="@+id/tvLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
-                        android:text="@string/dashboard_location_jakarta"
+                        android:text="Jakarta"
                         android:textColor="@color/home_primary"
                         android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@string/dashboard_pet_milo_breed"
-                android:textColor="@color/home_secondary"
-                android:textSize="11sp" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:background="@drawable/bg_dashboard_chip"
-                    android:gravity="center"
-                    android:minWidth="54dp"
-                    android:paddingHorizontal="10dp"
-                    android:text="@string/dashboard_age_2_years"
-                    android:textColor="@color/home_primary"
-                    android:textSize="10sp" />
+                    android:id="@+id/tvBreed"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="PERSIA MEDIUM"
+                    android:textColor="@color/home_secondary"
+                    android:textSize="11sp" />
 
                 <TextView
+                    android:id="@+id/tvRating"
                     android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="8dp"
-                    android:background="@drawable/bg_dashboard_chip"
-                    android:gravity="center"
-                    android:minWidth="54dp"
-                    android:paddingHorizontal="10dp"
-                    android:text="@string/dashboard_gender_male"
+                    android:layout_height="wrap_content"
+                    android:text="⭐ 4.8"
                     android:textColor="@color/home_primary"
-                    android:textSize="10sp" />
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvAge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:background="@drawable/bg_dashboard_chip"
+                        android:gravity="center"
+                        android:minWidth="54dp"
+                        android:paddingHorizontal="10dp"
+                        android:text="2 TAHUN"
+                        android:textColor="@color/home_primary"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/tvGender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_dashboard_chip"
+                        android:gravity="center"
+                        android:minWidth="54dp"
+                        android:paddingHorizontal="10dp"
+                        android:text="JANTAN"
+                        android:textColor="@color/home_primary"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvFee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp 120.000"
+                    android:textColor="@color/home_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -2,15 +2,24 @@ package com.example.adoptpet
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.adoptpet.data.PetRepository
 import com.example.adoptpet.databinding.ActivityMainBinding
+import com.example.adoptpet.model.PetItem
+import com.example.adoptpet.ui.PetAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: PetAdapter
+    private var allPets: List<PetItem> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,22 +31,91 @@ class MainActivity : AppCompatActivity() {
         }
         setContentView(binding.root)
 
-        binding.incSearch.searchBar.setOnClickListener { }
+        // Load data from repository
+        allPets = PetRepository.getPets()
+
+        // Set up RecyclerView
+        adapter = PetAdapter(allPets) { pet ->
+            openPetDetail(pet.id)
+        }
+        
+        binding.rvPets.layoutManager = LinearLayoutManager(this)
+        binding.rvPets.adapter = adapter
+
+        // Setup Popup Menu for View Mode Switch
+        binding.incHeader.imgMenu.setOnClickListener { view ->
+            val popup = PopupMenu(this, view)
+            popup.menuInflater.inflate(R.menu.menu_view_mode, popup.menu)
+            popup.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.action_mode_list -> {
+                        adapter.viewMode = PetAdapter.VIEW_TYPE_LIST
+                        binding.rvPets.layoutManager = LinearLayoutManager(this)
+                        true
+                    }
+                    R.id.action_mode_grid -> {
+                        adapter.viewMode = PetAdapter.VIEW_TYPE_GRID
+                        binding.rvPets.layoutManager = GridLayoutManager(this, 2)
+                        true
+                    }
+                    R.id.action_mode_card -> {
+                        adapter.viewMode = PetAdapter.VIEW_TYPE_CARD
+                        binding.rvPets.layoutManager = LinearLayoutManager(this)
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popup.show()
+        }
+
+        // Setup Category Filtering
+        binding.incCategories.tvCategoryAll.setOnClickListener {
+            filterPets("Semua")
+            updateCategoryUi(binding.incCategories.tvCategoryAll)
+        }
         binding.incCategories.tvCategoryCat.setOnClickListener {
-            openPetDetail(1)
+            filterPets("Kucing")
+            updateCategoryUi(binding.incCategories.tvCategoryCat)
         }
         binding.incCategories.tvCategoryDog.setOnClickListener {
-            openPetDetail(2)
+            filterPets("Anjing")
+            updateCategoryUi(binding.incCategories.tvCategoryDog)
         }
-        binding.incCardMilo.cardMilo.setOnClickListener { openPetDetail(1) }
-        binding.incCardBella.cardBella.setOnClickListener { openPetDetail(2) }
-        binding.incCardSnow.cardSnow.setOnClickListener { openPetDetail(3) }
-        binding.incCardLuna.cardLuna.setOnClickListener { openPetDetail(4) }
+
+        binding.incSearch.searchBar.setOnClickListener { }
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.homeRoot) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+    }
+
+    private fun filterPets(category: String) {
+        val filtered = when (category) {
+            "Kucing" -> allPets.filter { it.description.contains("Kucing", ignoreCase = true) }
+            "Anjing" -> allPets.filter { it.description.contains("Anjing", ignoreCase = true) }
+            else -> allPets
+        }
+        adapter.updateData(filtered)
+    }
+
+    private fun updateCategoryUi(selectedTextView: TextView) {
+        val categories = listOf(
+            binding.incCategories.tvCategoryAll,
+            binding.incCategories.tvCategoryCat,
+            binding.incCategories.tvCategoryDog
+        )
+        
+        categories.forEach { tv ->
+            if (tv == selectedTextView) {
+                tv.setBackgroundResource(R.drawable.bg_chip_active)
+                tv.setTextColor(resources.getColor(android.R.color.white, theme))
+            } else {
+                tv.setBackgroundResource(R.drawable.bg_chip_inactive)
+                tv.setTextColor(resources.getColor(R.color.home_primary, theme))
+            }
         }
     }
 

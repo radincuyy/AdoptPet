@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_mode_list"
+        android:title="Tampilan List" />
+    <item
+        android:id="@+id/action_mode_grid"
+        android:title="Tampilan Grid" />
+    <item
+        android:id="@+id/action_mode_card"
+        android:title="Tampilan Card View" />
+</menu>
