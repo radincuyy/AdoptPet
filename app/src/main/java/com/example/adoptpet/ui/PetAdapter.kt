@@ -13,7 +13,8 @@ import java.util.Locale
 
 class PetAdapter(
     private var items: List<PetItem>,
-    private val onItemClick: (PetItem) -> Unit
+    private val onItemClick: (PetItem) -> Unit,
+    private val onItemLongClick: ((PetItem) -> Unit)? = null
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -79,6 +80,9 @@ class PetAdapter(
             binding.tvRating.text = "⭐ ${item.rating}"
             binding.tvFee.text = rupiah.format(item.adoptionFee)
             binding.root.setOnClickListener { onItemClick(item) }
+            binding.root.setOnLongClickListener {
+                onItemLongClick?.invoke(item) != null
+            }
         }
     }
 
@@ -92,6 +96,9 @@ class PetAdapter(
             binding.tvRating.text = "⭐ ${item.rating}"
             binding.tvFee.text = rupiah.format(item.adoptionFee)
             binding.root.setOnClickListener { onItemClick(item) }
+            binding.root.setOnLongClickListener {
+                onItemLongClick?.invoke(item) != null
+            }
         }
     }
 
@@ -115,6 +122,9 @@ class PetAdapter(
                 ).show()
             }
             binding.root.setOnClickListener { onItemClick(item) }
+            binding.root.setOnLongClickListener {
+                onItemLongClick?.invoke(item) != null
+            }
         }
     }
 }

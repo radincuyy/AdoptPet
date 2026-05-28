@@ -42,4 +42,32 @@
     <string name="dashboard_home_content_desc">Home</string>
     <string name="dashboard_profile_content_desc">Profile</string>
     <string name="dashboard_location_content_desc">Lokasi</string>
+
+    <string name="form_title_add">Tambah Pet</string>
+    <string name="form_title_edit">Edit Pet</string>
+    <string name="form_hint_name">Nama</string>
+    <string name="form_hint_shelter">Shelter / Lokasi</string>
+    <string name="form_hint_breed">Ras</string>
+    <string name="form_hint_age">Usia (mis. 2 Tahun)</string>
+    <string name="form_label_gender">Jenis Kelamin</string>
+    <string name="form_gender_male">Jantan</string>
+    <string name="form_gender_female">Betina</string>
+    <string name="form_hint_fee">Biaya Adopsi (Rp)</string>
+    <string name="form_hint_rating">Rating (0.0 – 5.0)</string>
+    <string name="form_hint_description">Deskripsi</string>
+    <string name="form_label_image">Gambar</string>
+    <string name="form_btn_save">Simpan</string>
+    <string name="form_error_required">Field wajib diisi</string>
+    <string name="form_error_rating_range">Rating harus 0.0 – 5.0</string>
+    <string name="form_saved">Data tersimpan</string>
+    <string name="form_deleted">Data dihapus</string>
+
+    <string name="main_fab_add_content_desc">Tambah pet baru</string>
+
+    <string name="detail_menu_edit">Edit</string>
+    <string name="detail_menu_delete">Hapus</string>
+    <string name="detail_delete_title">Hapus Pet?</string>
+    <string name="detail_delete_message">Data pet ini akan dihapus permanen dari database.</string>
+    <string name="detail_delete_confirm">Hapus</string>
+    <string name="detail_delete_cancel">Batal</string>
 </resources>

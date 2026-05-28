@@ -19,7 +19,9 @@ import com.example.adoptpet.ui.PetAdapter
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: PetAdapter
+    private lateinit var repository: PetRepository
     private var allPets: List<PetItem> = emptyList()
+    private var activeCategory: String = "Semua"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +33,19 @@ class MainActivity : AppCompatActivity() {
         }
         setContentView(binding.root)
 
-        // Load data from repository
-        allPets = PetRepository.getPets()
+        // Load data from SQLite-backed repository
+        repository = PetRepository(this)
+        allPets = repository.getPets()
 
         // Set up RecyclerView
-        adapter = PetAdapter(allPets) { pet ->
-            openPetDetail(pet.id)
+        adapter = PetAdapter(
+            allPets,
+            onItemClick = { pet -> openPetDetail(pet.id) },
+            onItemLongClick = { pet -> openEditForm(pet.id) }
+        )
+
+        binding.fabAdd.setOnClickListener {
+            startActivity(Intent(this, AddEditPetActivity::class.java))
         }
         
         binding.rvPets.layoutManager = LinearLayoutManager(this)
@@ -93,12 +102,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun filterPets(category: String) {
+        activeCategory = category
         val filtered = when (category) {
             "Kucing" -> allPets.filter { it.description.contains("Kucing", ignoreCase = true) }
             "Anjing" -> allPets.filter { it.description.contains("Anjing", ignoreCase = true) }
             else -> allPets
         }
         adapter.updateData(filtered)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        allPets = repository.getPets()
+        filterPets(activeCategory)
+    }
+
+    private fun openEditForm(id: Int) {
+        val intent = Intent(this, AddEditPetActivity::class.java)
+        intent.putExtra(AddEditPetActivity.EXTRA_PET_ID, id)
+        startActivity(intent)
     }
 
     private fun updateCategoryUi(selectedTextView: TextView) {

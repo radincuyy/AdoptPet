@@ -3,6 +3,7 @@
     <style name="Text" parent="@android:style/Widget" />
     <style name="Chip" parent="@android:style/Widget" />
     <style name="Card" parent="@android:style/Widget" />
+    <style name="Form" parent="@android:style/Widget" />
 
     <style name="Text.Title">
         <item name="android:textSize">@dimen/text_title</item>
@@ -41,5 +42,30 @@
         <item name="cardElevation">0dp</item>
         <item name="strokeWidth">0dp</item>
         <item name="cardCornerRadius">@dimen/radius_lg</item>
+    </style>
+
+    <style name="Form.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/home_primary</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="hintTextColor">@color/home_primary</item>
+        <item name="android:textColorHint">@color/home_secondary</item>
+        <item name="boxBackgroundColor">@color/home_card_surface</item>
+    </style>
+
+    <style name="Form.EditText" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="android:textColor">@color/home_primary</item>
+        <item name="android:textColorHint">@color/home_secondary</item>
+    </style>
+
+    <style name="Form.Label">
+        <item name="android:textSize">@dimen/text_body</item>
+        <item name="android:textColor">@color/home_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Form.Radio" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:textColor">@color/home_primary</item>
+        <item name="android:buttonTint">@color/home_primary</item>
     </style>
 </resources>

@@ -11,16 +11,32 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/space_lg">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            android:theme="@style/ThemeOverlay.AdoptPet.Toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/menu_pet_detail"
+            app:navigationIcon="@android:drawable/ic_menu_revert"
+            app:navigationIconTint="@color/home_primary"
+            app:popupTheme="@style/ThemeOverlay.AdoptPet.Toolbar"
+            app:titleTextColor="@color/home_primary" />
+
         <ImageView
             android:id="@+id/imgPet"
             android:layout_width="0dp"
             android:layout_height="220dp"
+            android:layout_marginTop="@dimen/space_xs"
             android:contentDescription="@string/pet_image_content_desc"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
         <TextView
             android:id="@+id/tvName"
