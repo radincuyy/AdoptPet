@@ -1,6 +1,6 @@
 # AdoptPet
 
-Project Android Studio untuk mata kuliah Praktikum Mobile Programming dengan tema aplikasi adopsi hewan. Project ini dikembangkan secara bertahap sebagai implementasi materi praktikum di setiap pertemuan, dengan tetap mempertahankan identitas aplikasi `AdoptPet`. Pada tahap saat ini, dokumentasi README berfokus pada hasil pengerjaan Pertemuan 2 sampai Pertemuan 10.
+Project Android Studio untuk mata kuliah Praktikum Mobile Programming dengan tema aplikasi adopsi hewan. Project ini dikembangkan secara bertahap sebagai implementasi materi praktikum di setiap pertemuan, dengan tetap mempertahankan identitas aplikasi `AdoptPet`. Pada tahap saat ini, dokumentasi README berfokus pada hasil pengerjaan Pertemuan 2 sampai Pertemuan 12.
 
 ## Informasi Project
 
@@ -25,6 +25,7 @@ README ini saat ini mencakup hasil pengerjaan materi:
 - Pertemuan 3: View, ViewGroup, Style, dan Theme
 - Pertemuan 4: Merancang Program Aplikasi dan Intent pada Android
 - Pertemuan 10: Implementasi RecyclerView dengan Tiga Mode Tampilan (List, Grid, dan Card View) serta Filter Kategori
+- Pertemuan 12: Implementasi Koneksi Database SQLite dan Operasi CRUD pada Aplikasi Android
 
 ## Implementasi Pertemuan 2
 
@@ -47,6 +48,21 @@ Pada pertemuan ini aplikasi dikembangkan secara signifikan dengan menerapkan **R
    - **Mode Card View:** Menampilkan daftar hewan peliharaan dengan kartu besar premium vertikal secara utuh (dilengkapi info umur, jenis kelamin, dan tombol favorit).
 2. **Pengalih Mode Interaktif:** Ditambahkan **PopupMenu** pada ikon menu header (`imgMenu` di pojok kanan atas) untuk mengizinkan pengguna memilih dan berganti mode layout RecyclerView secara real-time.
 
+## Implementasi Pertemuan 12
+
+Pada pertemuan ini aplikasi mengalami perubahan mendasar pada lapisan data: dummy data yang sebelumnya hardcode di `PetRepository` digantikan dengan **database SQLite** sehingga seluruh data hewan tersimpan secara permanen di perangkat dan dapat dimodifikasi melalui antarmuka aplikasi.
+
+1. **Lapisan Database (3 file baru di `data/db/`):**
+   - **`DatabaseContract.kt`** mendefinisikan nama database (`adoptpet.db`), versi, nama tabel `pets`, seluruh kolom (`_id`, `name`, `shelter`, `breed`, `age`, `gender`, `adoption_fee`, `rating`, `description`, `image_res_id`), serta perintah SQL `CREATE TABLE` dan `DROP TABLE`.
+   - **`DatabaseHelper.kt`** merupakan turunan `SQLiteOpenHelper` yang mengelola pembuatan dan upgrade database. Pola **singleton** diterapkan agar hanya ada satu instance yang aktif sepanjang siklus hidup aplikasi.
+   - **`PetDao.kt`** menyediakan operasi **CRUD** lengkap (`insert`, `update`, `delete`, `getAll`, `getById`, `count`, `bulkInsert`). Seluruh query menggunakan parameter binding untuk mencegah SQL injection serta memanfaatkan `Cursor.use {}` agar resource selalu tertutup otomatis.
+2. **Refaktor `PetRepository`:** dari `object` statis menjadi `class(context)` yang membungkus DAO. Saat aplikasi dijalankan pertama kali dan tabel masih kosong, repository melakukan **auto-seed** empat hewan awal (Milo, Bella, Snow, Luna).
+3. **Antarmuka CRUD pada UI:**
+   - **`AddEditPetActivity`** beserta layout `activity_add_edit_pet.xml` digunakan untuk operasi tambah dan ubah data dalam satu form yang sama (dengan `EXTRA_PET_ID` opsional). Form berisi `TextInputLayout` untuk nama, shelter, ras, usia, biaya, rating, dan deskripsi, `RadioGroup` untuk jenis kelamin, serta `Spinner` pemilih gambar dengan preview.
+   - **FAB (Floating Action Button)** di `MainActivity` membuka form tambah, sedangkan **long-press** pada item daftar membuka form edit dengan data ter-prefill.
+   - **`MaterialToolbar`** di `PetDetailActivity` menampilkan tombol **Edit** dan **Hapus**. Penghapusan didahului `AlertDialog` konfirmasi untuk mencegah aksi tidak sengaja.
+   - Validasi form mencakup field wajib serta rentang rating 0,0–5,0; daftar di-refresh otomatis pada `onResume()` setiap kali kembali dari form.
+
 ## Fitur yang Ada Saat Ini
 
 - Splash screen sebagai tampilan pembuka aplikasi
@@ -55,19 +71,26 @@ Pada pertemuan ini aplikasi dikembangkan secara signifikan dengan menerapkan **R
 - Penyaringan (Filter) Kategori dinamis (Semua, Kucing, Anjing)
 - Halaman detail hewan lengkap dengan format Rupiah dinamis
 - Navigasi antar activity menggunakan `Intent` & `Intent Extras`
+- Penyimpanan data permanen dengan **SQLite** dan operasi CRUD penuh (Tambah, Edit, Hapus) lewat antarmuka aplikasi
+- Form tambah/edit hewan dengan validasi field dan rentang rating
 
 ## Struktur Utama Project
 
 - `SplashActivity.kt` : activity pembuka aplikasi
-- `MainActivity.kt` : dashboard utama aplikasi dengan kontrol RecyclerView & Kategori
-- `PetDetailActivity.kt` : halaman detail hewan
-- `ui/PetAdapter.kt` : adapter RecyclerView dengan logika multi-view holder
-- `model/PetItem.kt` : model data hewan yang telah diperluas
-- `data/PetRepository.kt` : sumber dummy data terpusat
-- `res/layout/` : layout activity, item RecyclerView (`item_pet_list`, `item_pet_grid`, `item_pet_card`), dan komponen modular lainnya
+- `MainActivity.kt` : dashboard utama aplikasi dengan kontrol RecyclerView, Kategori, dan FAB tambah pet
+- `PetDetailActivity.kt` : halaman detail hewan dengan menu Edit dan Hapus
+- `AddEditPetActivity.kt` : form tambah dan ubah data hewan
+- `ui/PetAdapter.kt` : adapter RecyclerView dengan logika multi-view holder dan callback long-press
+- `model/PetItem.kt` : model data hewan
+- `data/PetRepository.kt` : repository yang membungkus DAO dan auto-seed data awal
+- `data/db/DatabaseContract.kt` : kontrak nama tabel, kolom, dan SQL skema
+- `data/db/DatabaseHelper.kt` : `SQLiteOpenHelper` singleton untuk lifecycle database
+- `data/db/PetDao.kt` : operasi CRUD terhadap tabel `pets`
+- `res/layout/` : layout activity, item RecyclerView (`item_pet_list`, `item_pet_grid`, `item_pet_card`), form tambah/edit, dan komponen modular lainnya
 - `res/menu/menu_view_mode.xml` : resource menu untuk PopupMenu pengalih mode tampilan
+- `res/menu/menu_pet_detail.xml` : resource menu Edit dan Hapus pada toolbar halaman detail
 - `res/values/` : warna, string, dimensi, style, dan theme
 
 ## Catatan
 
-Project ini akan terus dilanjutkan hingga pertemuan-pertemuan berikutnya sebagai satu aplikasi yang berkembang secara bertahap. Pada versi sekarang, dokumentasi dan implementasi yang dirangkum di README telah difokuskan dari hasil praktikum Pertemuan 2 hingga Pertemuan 10 dengan tema aplikasi adopsi hewan.
+Project ini akan terus dilanjutkan hingga pertemuan-pertemuan berikutnya sebagai satu aplikasi yang berkembang secara bertahap. Pada versi sekarang, dokumentasi dan implementasi yang dirangkum di README telah difokuskan dari hasil praktikum Pertemuan 2 hingga Pertemuan 12 dengan tema aplikasi adopsi hewan.
